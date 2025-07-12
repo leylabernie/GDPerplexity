@@ -1,0 +1,109 @@
+import type { Metadata } from 'next'
+import { Inter, Playfair_Display } from 'next/font/google'
+import './globals.css'
+import Providers from '@/components/providers'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import { Toaster } from 'react-hot-toast'
+
+const inter = Inter({ 
+  subsets: ['latin'], 
+  variable: '--font-inter',
+  display: 'swap' 
+})
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'], 
+  variable: '--font-playfair',
+  display: 'swap' 
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: 'GlamorousDesi - Exquisite Indian Ethnic Wear & Wedding Planning',
+    template: '%s | GlamorousDesi'
+  },
+  description: 'Discover luxury Indian ethnic wear and comprehensive wedding planning services. Shop designer lehengas, sarees, and sherwanis without traveling to India. Modern boutique experience for the diaspora.',
+  keywords: [
+    'indian ethnic wear',
+    'designer lehengas',
+    'bridal sarees',
+    'wedding planning',
+    'luxury boutique',
+    'indian diaspora',
+    'wedding shopping',
+    'handcrafted ethnic wear'
+  ],
+  authors: [{ name: 'GlamorousDesi Team' }],
+  creator: 'GlamorousDesi',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://glamorousdesi.com',
+    siteName: 'GlamorousDesi',
+    title: 'GlamorousDesi - Exquisite Indian Ethnic Wear',
+    description: 'Luxury Indian ethnic wear and wedding planning services for the modern diaspora',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'GlamorousDesi - Luxury Indian Ethnic Wear'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GlamorousDesi - Exquisite Indian Ethnic Wear',
+    description: 'Luxury Indian ethnic wear and wedding planning services',
+    images: ['/twitter-image.jpg']
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code'
+  }
+}
+
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="min-h-screen bg-background font-sans antialiased">
+        <Providers>
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#8B1538',
+                color: '#fff',
+                fontFamily: 'var(--font-inter)'
+              }
+            }}
+          />
+        </Providers>
+      </body>
+    </html>
+  )
+}

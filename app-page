@@ -1,0 +1,83 @@
+import { Metadata } from 'next'
+import HeroSection from '@/components/home/HeroSection'
+import FeaturedCategories from '@/components/home/FeaturedCategories'
+import WeddingHubHighlight from '@/components/home/WeddingHubHighlight'
+import TrendingProducts from '@/components/home/TrendingProducts'
+import BrandStory from '@/components/home/BrandStory'
+import TrustSignals from '@/components/home/TrustSignals'
+import Newsletter from '@/components/home/Newsletter'
+
+export const metadata: Metadata = {
+  title: 'GlamorousDesi - Exquisite Indian Ethnic Wear & Wedding Planning',
+  description: 'Discover luxury Indian ethnic wear and comprehensive wedding planning services. Shop designer lehengas, sarees, and sherwanis without traveling to India.',
+  openGraph: {
+    title: 'GlamorousDesi - Exquisite Indian Ethnic Wear',
+    description: 'Luxury boutique experience for modern Indian ethnic wear and wedding planning',
+    url: 'https://glamorousdesi.com',
+    images: [
+      {
+        url: '/images/homepage-hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'GlamorousDesi Homepage'
+      }
+    ]
+  },
+  alternates: {
+    canonical: 'https://glamorousdesi.com'
+  }
+}
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section - Above the fold content */}
+      <HeroSection />
+      
+      {/* Featured Categories - Main product navigation */}
+      <FeaturedCategories />
+      
+      {/* Wedding Hub Highlight - Unique selling proposition */}
+      <WeddingHubHighlight />
+      
+      {/* Trending Products - Social proof and discovery */}
+      <TrendingProducts />
+      
+      {/* Brand Story - Trust and authenticity */}
+      <BrandStory />
+      
+      {/* Trust Signals - Security and reliability */}
+      <TrustSignals />
+      
+      {/* Newsletter Signup - Lead generation */}
+      <Newsletter />
+      
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'GlamorousDesi',
+            url: 'https://glamorousdesi.com',
+            description: 'Luxury Indian ethnic wear and wedding planning services',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate: 'https://glamorousdesi.com/search?q={search_term_string}'
+              },
+              'query-input': 'required name=search_term_string'
+            },
+            sameAs: [
+              'https://www.instagram.com/glamorousdesi',
+              'https://www.facebook.com/glamorousdesi',
+              'https://www.pinterest.com/glamorousdesi'
+            ]
+          })
+        }}
+      />
+    </div>
+  )
+}
